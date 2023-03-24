@@ -13,7 +13,7 @@ class ToDoList(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.user}--{self.title}(to-do list)'
+        return f'created by {self.user} - {self.title.upper()}'
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if not self.slug:
@@ -36,7 +36,7 @@ class ToDoAction(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.to_do_list}--{self.title}(to-do action)'
+        return f'{self.to_do_list}, to-do action named "{self.title}"'
 
     class Meta:
         verbose_name = 'To-Do Action'
