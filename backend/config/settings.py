@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 
+import rest_framework.authentication
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -45,6 +46,8 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY = [
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 LOCAL_APPS = [
     'users',
@@ -134,3 +137,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}

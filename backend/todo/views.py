@@ -1,3 +1,42 @@
-from django.shortcuts import render
+from django.http import Http404
+from rest_framework import mixins
+from rest_framework import generics
+from rest_framework import permissions
+from rest_framework.response import Response
 
-# Create your views here.
+from .models import ToDoList, ToDoAction
+from .serializers import ToDoListListSerializer, ToDoListRetrieveSerializer, ToDoActionSerializer
+
+
+class ToDoListListAPIView(generics.ListAPIView):
+    serializer_class = ToDoListListSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        user = self.request.user
+        qs = ToDoList.objects.filter(user=user).select_related('user')
+        return qs
+
+
+class ToDoListRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    serializer_class = ToDoListRetrieveSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_object(self):
+        try:
+            return ToDoList.objects.get(user=self.request.user, slug=self.kwargs.get('slug'))
+        except ToDoList.DoesNotExist or AttributeError:
+            raise Http404
+
+
+class ToDoActionRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ToDoActionSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_object(self):
+        try:
+            return ToDoAction.objects.get(to_do_list__user=self.request.user, pk=self.kwargs.get('pk'))
+        except ToDoAction.DoesNotExist or AttributeError:
+            raise Http404
+
+

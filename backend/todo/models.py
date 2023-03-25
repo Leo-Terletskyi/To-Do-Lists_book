@@ -31,7 +31,8 @@ class ToDoList(models.Model):
 
 class ToDoAction(models.Model):
     title = models.CharField(max_length=192)
-    to_do_list = models.ForeignKey(ToDoList, db_index=True, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+    to_do_list = models.ForeignKey(ToDoList, db_index=True, related_name='actions', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
