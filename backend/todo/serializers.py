@@ -17,6 +17,12 @@ class ToDoListListSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'slug')
 
 
+class ToDoListCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ToDoList
+        fields = ('id', 'title', 'slug')
+
+
 class ToDoListRetrieveSerializer(serializers.ModelSerializer):
     actions = ToDoActionSerializer(many=True)
 

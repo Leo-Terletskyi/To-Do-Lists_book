@@ -5,7 +5,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 
 from .models import ToDoList, ToDoAction
-from .serializers import ToDoListListSerializer, ToDoListRetrieveSerializer, ToDoActionSerializer
+from .serializers import ToDoListListSerializer, ToDoListCreateSerializer, ToDoListRetrieveSerializer, ToDoActionSerializer
 
 
 class ToDoListListAPIView(generics.ListAPIView):
@@ -16,6 +16,14 @@ class ToDoListListAPIView(generics.ListAPIView):
         user = self.request.user
         qs = ToDoList.objects.filter(user=user).select_related('user')
         return qs
+
+
+class ToDoListCreateAPIView(generics.CreateAPIView):
+    serializer_class = ToDoListCreateSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class ToDoListRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
