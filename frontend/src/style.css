@@ -17,7 +17,7 @@ a, a:before, a:after, a:visited, a:hover, a:active {
 
 .main-div {
     max-width: 800px;
-    min-height: 800px;
+    min-height: 95vh;
     margin: 0 auto;
     padding: 10px;
     background: #fc00ff; /* fallback for old browsers */
@@ -73,9 +73,14 @@ input {
     width: 100%;
     font-size: 18px;
     margin-top: 5px;
-    padding: 3px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 20px;
     border: 1px solid lightskyblue;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 14px lightskyblue inset;
 }
 
 .auth-btn {
@@ -84,7 +89,7 @@ input {
     font-size: 18px;
     font-weight: 700;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .to-do-lists {
@@ -160,7 +165,10 @@ input {
     align-items: center;
     background: lightcyan;
     border-radius: 20px;
+}
 
+.to-do-action:hover {
+    box-shadow: 0 0 10px mediumspringgreen inset;
 }
 
 .to-do-action__title {

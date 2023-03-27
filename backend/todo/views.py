@@ -37,6 +37,15 @@ class ToDoListRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
             raise Http404
 
 
+class ToDoActionCreateAPIView(generics.CreateAPIView):
+    serializer_class = ToDoActionSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        to_do_list = ToDoList.objects.get(slug=self.kwargs.get('slug'), user=self.request.user)
+        serializer.save(to_do_list=to_do_list)
+
+
 class ToDoActionRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ToDoActionSerializer
     permission_classes = (permissions.IsAuthenticated,)

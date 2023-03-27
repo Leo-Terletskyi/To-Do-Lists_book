@@ -2,8 +2,8 @@
   <div class="to-do-list">
     <h1 class="h-1">&#128212; {{ toDoList.title }}:</h1>
     <h3 class="label">Add new action:</h3>
-    <form class="add-action">
-      <input class="add-action__input" type="text" name="title">
+    <form class="add-action" @submit.prevent="addNewAction">
+      <input class="add-action__input" type="text" name="title" v-model="newAction">
       <button type="submit" class="add-action__btn">&#9989;</button>
     </form>
     <div v-for="action in toDoList.actions" :key="action.id" class="to-do-action">
@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       toDoList: [],
+      newAction: ''
     }
   },
   mounted() {
@@ -37,6 +38,17 @@ export default {
             this.toDoList = response.data
           })
           .catch(error => {
+            console.log(error)
+          })
+    },
+    addNewAction() {
+      axios
+          .post(`/api/v1/to-do-lists/${this.toDoList.slug}/create-action/`, {title: this.newAction})
+          .then(response => {
+            this.toDoList.actions.unshift(response.data)
+            this.newAction = ''
+          })
+          .catch(error =>{
             console.log(error)
           })
     },
