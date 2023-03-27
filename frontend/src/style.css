@@ -40,10 +40,15 @@ a, a:before, a:after, a:visited, a:hover, a:active {
     padding: 10px;
     border-radius: 25px;
     text-align: center;
+    text-shadow: -1px 1px 1px lightcoral;
     font-size: 24px;
     font-weight: 700;
     font-style: italic;
     background-image: radial-gradient( circle 780.6px at 10% 20%,  rgba(133,255,189,1) 0%, rgba(255,251,125,1) 90.7% );
+}
+
+.label {
+    margin: 20px 0 0 0;
 }
 
 .h-1 {
@@ -75,7 +80,7 @@ input {
 
 .auth-btn {
     width: 50%;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 18px;
     font-weight: 700;
     padding: 10px;
@@ -130,6 +135,7 @@ input {
 }
 
 .new-list-input {
+    width: 100%;
     margin: 0;
     padding: 5px;
     font-size: 18px;
@@ -143,5 +149,72 @@ input {
 }
 
 .new-list-col-item-left {
-    padding: 15px;
+    padding: 15px 0 15px 15px;
+}
+
+.to-do-action {
+    min-height: 20px;
+    display: flex;
+    margin: 10px 0 0 0;
+    justify-content: space-between;
+    align-items: center;
+    background: lightcyan;
+    border-radius: 20px;
+
+}
+
+.to-do-action__title {
+    flex: 90%;
+    padding: 10px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.to-do-action__delete {
+    flex: 10%;
+    padding: 10px;
+    text-align: center;
+    background: darkmagenta;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+    font-weight: 400;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: lightgreen;
+}
+.completed:after {
+    content: "\2714";
+}
+
+.add-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.add-action__input {
+    margin: 0;
+    font-size: 18px;
+    padding: 10px;
+    flex: 83%;
+    border-radius: 20px 0 0 20px;
+}
+
+.add-action__input:focus {
+    outline: none;
+    box-shadow: 0 0 14px lightskyblue inset;
+}
+
+.add-action__btn {
+    flex: 10%;
+    padding: 9px;
+    font-size: 21px;
+    background: lightgreen;
+    border: none;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
 }
