@@ -7,7 +7,7 @@
         <div class="to-do-lists__collection_item-left new-list-col-item-left">
           <div>add new to-do-list:</div>
           <form class="add-new-todolist" @submit.prevent="createNewToDoList">
-            <input type="text" name="title" class="new-list-input" v-model="newToDoList">
+            <input type="text" name="title" class="new-list-input" maxlength="192" v-model="newToDoList">
             <button type="submit" class="new-list-input-btn">&#9989;</button>
           </form>
         </div>

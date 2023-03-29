@@ -3,7 +3,7 @@
     <h1 class="h-1">&#128212; {{ toDoList.title }}:</h1>
     <h3 class="label">Add new action:</h3>
     <form class="add-action" @submit.prevent="addNewAction">
-      <input class="add-action__input" type="text" name="title" v-model="newAction">
+      <input class="add-action__input" type="text" name="title" maxlength="192" v-model="newAction">
       <button type="submit" class="add-action__btn">&#9989;</button>
     </form>
     <div v-for="action in toDoList.actions" :key="action.id" class="to-do-action">
@@ -34,11 +34,13 @@ export default {
       axios
           .get(`/api/v1/to-do-lists/${this.$route.params.slug}`)
           .then(response => {
-            console.log(response.data)
             this.toDoList = response.data
           })
           .catch(error => {
             console.log(error)
+            if (error.response.status === 404) {
+              this.$router.push('/http404')
+            }
           })
     },
     addNewAction() {
@@ -71,7 +73,7 @@ export default {
             this.toDoList.actions.splice(this.toDoList.actions.indexOf(action), 1)
           })
           .catch(error => {
-            console.log(error)
+            console.log(error.type)
           })
     },
   }

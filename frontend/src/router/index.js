@@ -4,6 +4,7 @@ import SignUp from "../views/SignUp.vue";
 import LogIn from "../views/LogIn.vue";
 import ToDoLists from "../views/ToDoLists.vue";
 import ToDoList from "../views/ToDoList.vue";
+import Http404 from "../views/Http404.vue";
 
 const routes = [
     {
@@ -30,6 +31,16 @@ const routes = [
         path: '/to-do-lists/:slug',
         name: 'ToDoList',
         component: ToDoList
+    },
+    {
+        path: "/:catchAll(.*)*",
+        name: 'Http404',
+        component: Http404
+    },
+    {
+        path: '/http-404',
+        name: 'http404',
+        component: Http404
     }
 ]
 
