@@ -34,7 +34,7 @@ a, a:before, a:after, a:visited, a:hover, a:active {
 }
 
 .auth__sign-up, .auth__login {
-    width: 90%;
+    width: 85%;
     height: 35px;
     margin-top: 15px;
     padding: 10px;
@@ -45,6 +45,14 @@ a, a:before, a:after, a:visited, a:hover, a:active {
     font-weight: 700;
     font-style: italic;
     background-image: radial-gradient( circle 780.6px at 10% 20%,  rgba(133,255,189,1) 0%, rgba(255,251,125,1) 90.7% );
+    transition-duration: 500ms;
+}
+
+.auth__sign-up:hover, .auth__login:hover {
+    box-shadow: -3px 3px 5px gray;
+    width: 90%;
+    color: mediumblue;
+    text-shadow: -2px 2px 2px lightcoral;
 }
 
 .label {
@@ -90,6 +98,13 @@ input:focus {
     font-weight: 700;
     padding: 10px;
     border-radius: 20px;
+    transition-duration: 500ms;
+}
+
+.auth-btn:hover {
+    width: 60%;
+    color: greenyellow;
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
 }
 
 .to-do-lists {
@@ -133,6 +148,7 @@ input:focus {
 
 .to-do-lists__collection_item-right {
     padding: 5px;
+    cursor: zoom-in;
 }
 
 .add-new-todolist {
@@ -165,10 +181,15 @@ input:focus {
     align-items: center;
     background: lightcyan;
     border-radius: 20px;
+    transition-duration: 100ms;
 }
 
 .to-do-action:hover {
     box-shadow: 0 0 10px mediumspringgreen inset;
+}
+
+.to-do-action:active {
+    box-shadow: 0 0 10px orangered;
 }
 
 .to-do-action__title {
@@ -183,6 +204,16 @@ input:focus {
     padding: 10px;
     text-align: center;
     background: darkmagenta;
+    cursor: zoom-in;
+}
+
+.to-do-action__delete:hover {
+    background: darkorchid;
+    box-shadow: 0 0 5px black;
+}
+
+.to-do-action__delete:active {
+    box-shadow: 0 0 5px black inset;
 }
 
 .completed {
@@ -225,6 +256,15 @@ input:focus {
     border: none;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
+}
+
+.add-action__btn:hover {
+    background: greenyellow;
+    box-shadow: 0 0 5px black;
+}
+
+.add-action__btn:active {
+    box-shadow: 0 0 5px black inset;
 }
 
 .not-found {
