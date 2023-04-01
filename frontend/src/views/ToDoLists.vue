@@ -59,7 +59,10 @@ export default {
         title: this.newToDoList
       }
       axios
-          .post('/api/v1/to-do/create-list/', formData)
+          .post('/api/v1/to-do/create-list/', formData, {
+                xsrfCookieName: 'csrftoken',
+                xsrfHeaderName: 'X-CSRFTOKEN',
+          })
           .then(response => {
             console.log(response.data)
             this.toDoLists.unshift(response.data)

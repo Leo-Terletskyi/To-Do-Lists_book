@@ -40,7 +40,10 @@ export default {
       }
 
       axios
-          .post('/api/v1/auth/users/', formData)
+          .post('/api/v1/auth/users/', formData, {
+                xsrfCookieName: 'csrftoken',
+                xsrfHeaderName: 'X-CSRFTOKEN',
+          })
           .then(response => {
             this.$router.push('/log-in')
             console.log(response)

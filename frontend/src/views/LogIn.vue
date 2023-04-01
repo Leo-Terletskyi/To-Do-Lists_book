@@ -32,14 +32,19 @@ export default {
         username: this.username,
         password: this.password
       }
+      const csrf_token = '{% csrf_token %}'
       axios
-          .post('/api/v1/auth/token/login/', formData)
+          .post('/api/v1/auth/token/login/', formData, {
+                xsrfCookieName: 'csrftoken',
+                xsrfHeaderName: 'X-CSRFTOKEN',
+          })
           .then(response => {
             console.log(response)
             const token = response.data.auth_token
             console.log(this.$store.state.token)
             this.$store.commit('setToken', token)
             axios.defaults.headers.common['Authorization'] = "Token " + token
+
             localStorage.setItem("token", token)
             this.$router.push('/to-do-lists')
           })

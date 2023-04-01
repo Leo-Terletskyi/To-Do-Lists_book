@@ -45,7 +45,10 @@ export default {
     },
     addNewAction() {
       axios
-          .post(`/api/v1/to-do-lists/${this.toDoList.slug}/create-action/`, {title: this.newAction})
+          .post(`/api/v1/to-do-lists/${this.toDoList.slug}/create-action/`, {title: this.newAction}, {
+                xsrfCookieName: 'csrftoken',
+                xsrfHeaderName: 'X-CSRFTOKEN',
+          })
           .then(response => {
             this.toDoList.actions.unshift(response.data)
             this.newAction = ''
@@ -56,7 +59,10 @@ export default {
     },
     setStatus(action) {
       axios
-          .put(`/api/v1/to-do-actions/${action.id}/`, {title: action.title, completed: !action.completed})
+          .put(`/api/v1/to-do-actions/${action.id}/`, {title: action.title, completed: !action.completed}, {
+                xsrfCookieName: 'csrftoken',
+                xsrfHeaderName: 'X-CSRFTOKEN',
+          })
           .then(response => {
             console.log(response.data)
             const upd_obj = this.toDoList.actions.findIndex((obj => obj.id === action.id));
